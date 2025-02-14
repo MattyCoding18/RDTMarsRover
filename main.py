@@ -1,3 +1,6 @@
+from colorama import Fore, Style, init
+init(autoreset=True)
+import time
 
 class Plateau:
     """Storing the maximum X and Y Axis for the Plateau"""
@@ -60,24 +63,57 @@ class Rover:
 
     def get_position(self):
         """Returns the Rover's final position and its direction as a string"""
-        return f"{self.x} {self.y} {self.direction}"
 
+        # Simulating a signal transmission delay
+        print(Fore.CYAN + "📡 Connecting to Rover Camera Feed..." + Style.RESET_ALL, end="", flush=True)
+        for _ in range(3):
+            time.sleep(0.5)
+            print(Fore.CYAN + ".", end="", flush=True)
+        time.sleep(1)
+        print("\n" * 20)
+
+        # Returns Final Position
+        return (
+            Fore.YELLOW + "🔭Live Image Received From Mars Rover 📸" + Style.RESET_ALL + "\n"
+            + Fore.GREEN + "✅ Final Coordinates Captured: " + Style.RESET_ALL + f"{self.x} {self.y} {self.direction}" + "\n"
+            + Fore.CYAN + "🛰️ Data Successfully Transmitted to NASA HQ 🌍\n" + Style.RESET_ALL
+        )
 
 def main():
     """Handles user input and runs the Rover"""
 
+    print(Fore.CYAN + "\n 🚀 INITIALISING MISSION CONTROL...\n" + Style.RESET_ALL)
+    time.sleep(1)
+
+    print(Fore.YELLOW + "🛰️ Establishing connection with Mars Rover..." + Style.RESET_ALL, end="", flush=True)
+
+    loading_symbols = ["📡", "🚀", "🌍"]
+    for symbol in loading_symbols:
+        time.sleep(0.5)
+        print(Fore.YELLOW + symbol, end="", flush=True)
+
+    time.sleep(1)
+    print("\n" * 20)
+
+    print(Fore.GREEN + "✅ Connection secured! Live telemetry feed active.\n" + Style.RESET_ALL)
+    print(Fore.BLUE + "🔴 Welcome, RDT Engineer. Your task is to navigate the Mars Rover safely across the plateau.\n" + Style.RESET_ALL)
+
+    print(Fore.MAGENTA + "📡 All movements will be transmitted back to NASA HQ in real-time.\n" + Style.RESET_ALL)
+
+    time.sleep(1)
+
     # Get the plateau size input from user (Eg: "5 5")
-    max_x, max_y = map(int, input("Enter the plateau size (max_x max_y): ").split())
+    max_x, max_y = map(int, input(Fore.BLUE + "Enter the plateau size (max_x max_y) (Eg: 5 5): " + Style.RESET_ALL).split())
     plateau = Plateau(max_x, max_y) # Create the plateau grid
 
     # Ask for the number of robots
-    num_rovers = int(input("Enter the number of rovers: "))
+    num_rovers = int(input(Fore.BLUE + "Enter the number of rovers: " + Style.RESET_ALL))
     rovers = [] # Stores all the rovers and their movements
 
     # Loops through each rover
     for i in range(num_rovers):
         # Get Rover's starting position input (Eg: 1 1 N)
-        x, y, direction = input("Enter the rover's starting position (x y direction) : ").split()
+        x, y, direction = input(Fore.MAGENTA + "Enter the rover's starting position (x y direction) (Eg 1 1 N) : " + Style.RESET_ALL).split()
         x, y = int(x), int(y) # Converts to int
 
         # Gets movement instructions from user (Eg: "MRLMLRMML")
