@@ -19,7 +19,7 @@ class Rover:
     directions = ["N", "E", "S", "W"] # Directions list, handling left+right turns
 
     def __init__(self, plateau, x, y, direction):
-        """Ensures that the Rover always starts at (0,0) and faces North"""
+        """Rover starting position"""
         self.plateau = plateau # So the rover knows the boundaries
         self.x = x # The rovers current X position
         self.y = y # The rovers current Y position
