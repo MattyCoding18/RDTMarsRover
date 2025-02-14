@@ -72,7 +72,7 @@ class Rover:
         time.sleep(1)
         print("\n" * 20)
 
-        # Returns Final Position
+        # Returns Final Position Of Rover
         return (
             Fore.YELLOW + "🔭Live Image Received From Mars Rover 📸" + Style.RESET_ALL + "\n"
             + Fore.GREEN + "✅ Final Coordinates Captured: " + Style.RESET_ALL + f"{self.x} {self.y} {self.direction}" + "\n"
